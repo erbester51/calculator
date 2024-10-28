@@ -1,3 +1,4 @@
+from cProfile import label
 import tkinter as tk
 
 LARGE_FONT_STYLE = ("Arial", 40, "bold")
@@ -48,7 +49,7 @@ class Calculator:
             self.window.bind(str(key), lambda event, digit=key: self.add_to_expression(digit))
         
         for key in self.operations:
-            self.window.bind(key, lambda event, operator=keyL self.apend_operator(operator))
+            self.window.bind(key, lambda event, operator=key: self.append_operator(operator))
     
     def create_specials_buttons(self):
         self.create_clear_button()
@@ -57,7 +58,7 @@ class Calculator:
         self.create._sqrt_button()
 
     def create_display_lables(self):
-        total_lablel = tk.Label(self.display_frame, text=self.total_expression, anchor=tk.E, bg=LIGHT_GRAY,
+        total_label = tk.Label(self.display_frame, text=self.total_expression, anchor=tk.E, bg=LIGHT_GRAY,
                                 fg=LABEL_COLOR, padx=24, font=SMALL_FONT_STYLE)
         total_label.pack(expand=True, fill='both')
 
@@ -65,7 +66,7 @@ class Calculator:
 
     def create_display_frame(self):
         frame = tk.Frame(self.window, height=221, bg=LIGHT_GRAY)
-        frame.pack(expand=TRUE, fill="both")
+        frame.pack(expand=True, fill="both")
         return frame
 
     def add_to_expression(self, value):
@@ -74,7 +75,7 @@ class Calculator:
 
     def create_digit_buttons(self):
         for digit, grid_value in self.digits.items():
-            button = tk.Button(self.button_frame, text=str(digit), bg=WHITE, fg=LABEL_Color, font=DIGITS_FONT_STYLE,
+            button = tk.Button(self.button_frame, text=str(digit), bg=WHITE, fg=LABEL_COLOR, font=DIGITS_FONT_STYLE,
                                 borderwidth=0, command=lambda x=digit: self.add_to_expression(x))
             button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW)
     
@@ -90,7 +91,7 @@ class Calculator:
         for operator, symbol in self.operations.items():
             button = tk.Button(self.button_frame, text=symbol, bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                 borderwidth=0, command=lambda x=operator: self.append_operator(x))
-            button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW)
+            button.grid(row=i, column=4, sticky=tk.NSEW)
 
     def clear(self):
         self.current_expression = ""
@@ -104,7 +105,7 @@ class Calculator:
     
     def square(self):
         self.current_expression = str(eval(f"{self.current.expression}**2"))
-    self.update_label()
+        self.update_label()
 
     def create_square_button(self):
         button = tk.Button(self.buttons_frame, text="x\u00b2", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
@@ -121,7 +122,7 @@ class Calculator:
         button.grid(row=0, column=3, sticky=tk.NSEW)
 
     def evaluate(self):
-        self.total_expression += sef.current_expression
+        self.total_expression += self.current_expression
         self.update_total_label()
         try:
             self.current_expression = str(eval(self.total_expression))
@@ -133,7 +134,7 @@ class Calculator:
             self.update_label()
 
     def create_equals_button(self):
-        button = tk.Button(self.buttons_frame, text="=" bg=LIGHT_BLUE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
+        button = tk.Button(self.buttons_frame, text="=", bg=LIGHT_BLUE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                             borderwidth=0, columnspan=2, sticky=tk.NSEW)
                         
     def create_buttons_frame(self):
@@ -149,9 +150,9 @@ class Calculator:
     def update_label(self):
         self.label.config(text=self.current_expression[:11])
 
-    def run(self)
-    self.window.mainloop()
+    def run(self):
+        self.window.mainloop()
 
-if _name_ == "_main_":
+if '_name_' == "_main_":
     calc = Calculator()
     calc.run
