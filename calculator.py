@@ -42,7 +42,7 @@ class Calculator:
         self.create_special_buttons()
         self.bind_keys
 
-    def bind_keys(self)
+    def bind_keys(self):
         self.window.bind("<Return", lambda event: self.evaluate())
         for key in self.digits:
             self.window.bind(str(key), lambda event, digit=key: self.add_to_expression(digit))
