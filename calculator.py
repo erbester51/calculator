@@ -25,10 +25,10 @@ class Calculator:
         self.total_label, self.label = self.create_display_labels()
 
         self.digits = {
-            7: (1, 1) 8: (1, 2) 9: (1, 3)
-            4: (2, 1) 5: (2, 2) 6: (2, 3)
-            1: (3, 1) 2: (3, 2) 3: (3, 3)
-            0: (4, 1) ',': (4, 2) '.': (4, 3)
+            7: (1, 1), 8: (1, 2), 9: (1, 3),
+            4: (2, 1), 5: (2, 2), 6: (2, 3),
+            1: (3, 1), 2: (3, 2), 3: (3, 3),
+            0: (4, 1), ',': (4, 2), '.': (4, 3)
         }
         self.operations = {"/": "\u00F7", "*": "\u00D7", "-": "-", "+": "+"}
         self.buttons_frame = self.create_buttons_frame()
